@@ -4,10 +4,7 @@ import com.example.department.entity.Department;
 import com.example.department.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/departments")
@@ -19,13 +16,16 @@ public class DepartmentController {
 
     @PostMapping("/")
     public Department saveDepartment(@RequestBody Department department) {
-        Log.info("Inside saveDepartment method of Department Controller")
+        log.info("Inside saveDepartment method of Department Controller");
         return departmentService.saveDepartment(department);
 
     }
 
-    public Department getDepartment(Department department) {
-
+    @GetMapping("/{id}")
+    public Department findDepartmentById(@PathVariable("id") Long deparmentId) {
+        log.info("Inside findDepartmentById method of Department Controller");
+        return departmentService.findDepartmentById(deparmentId);
 
     }
+
 }
